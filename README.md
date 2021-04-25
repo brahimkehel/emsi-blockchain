@@ -1,0 +1,1 @@
+This is my emsi-blockchain repository that icludes blockchain folder having blockchain (creation,destruction,serialization,deserialization) and block(creation,destruction,serialization,deserialization,hashing,checking validation), and crypto folder containing optional crypto project
