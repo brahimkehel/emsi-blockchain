@@ -1,21 +1,21 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "hblk_crypto.h"
 
-/**
- * A function that creates a new EC key pair
- * Return: a pointer to creat an EC_KEY structure
- */
-EC_KEY *ec_create(void)
+EC_KEY *ec_create()
 {
-	/* EC_CURVE == secp256k1 */
-	EC_KEY *key;
-
-	key = EC_KEY_new_by_curve_name(EC_CURVE);
-	if (!key)
-		return (NULL);
-	if (!EC_KEY_generate_key(key))
-	{
-		EC_KEY_free(key);
-		return (NULL);
-	}
-	return (key);
+EC_KEY *key = EC_KEY_new();
+EC_GROUP *group;
+if (key == NULL)
+return (NULL);
+group = EC_GROUP_new_by_curve_name(EC_CURVE);
+if (group == NULL)
+return (NULL);
+EC_KEY_set_group(key, group);
+EC_KEY_generate_key(key);
+EC_GROUP_free(group);
+return (key);
 }
+
